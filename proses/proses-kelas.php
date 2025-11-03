@@ -5,40 +5,40 @@ include '../config/class-master.php';
 // Membuat objek dari class MasterData
 $master = new MasterData();
 // Mengecek aksi yang dilakukan berdasarkan parameter GET 'aksi'
-if($_GET['aksi'] == 'inputprovinsi'){
+if($_GET['aksi'] == 'inputkelas'){
     // Mengambil data provinsi dari form input menggunakan metode POST dan menyimpannya dalam array
-    $dataProvinsi = [
+    $dataKelas = [
         'nama' => $_POST['nama']
     ];
     // Memanggil method inputProvinsi untuk memasukkan data provinsi dengan parameter array $dataProvinsi
-    $input = $master->inputProvinsi($dataProvinsi);
+    $input = $master->inputKelas($dataKelas);
     if($input){
-        header("Location: ../master-provinsi-list.php?status=inputsuccess");
+        header("Location: ../master-kelas-list.php?status=inputsuccess");
     } else {
-        header("Location: ../master-provinsi-input.php?status=failed");
+        header("Location: ../master-kelas-input.php?status=failed");
     }
-} elseif($_GET['aksi'] == 'updateprovinsi'){
+} elseif($_GET['aksi'] == 'updatekelas'){
     // Mengambil data provinsi dari form edit menggunakan metode POST dan menyimpannya dalam array
-    $dataProvinsi = [
-        'id' => $_POST['id'],
-        'nama' => $_POST['nama']
+    $dataKelas = [
+        'id' => $_POST['id_kelas'],
+        'nama' => $_POST['nama_kelas']
     ];
     // Memanggil method updateProvinsi untuk mengupdate data provinsi dengan parameter array $dataProvinsi
-    $update = $master->updateProvinsi($dataProvinsi);
+    $update = $master->updateKelas($dataKelas);
     if($update){
-        header("Location: ../master-provinsi-list.php?status=editsuccess");
+        header("Location: ../master-kelas-list.php?status=editsuccess");
     } else {
-        header("Location: ../master-provinsi-edit.php?id=".$dataProvinsi['id']."&status=failed");
+        header("Location: ../master-kelas-edit.php?id=".$dataKelas['id']."&status=failed");
     }
-} elseif($_GET['aksi'] == 'deleteprovinsi'){
+} elseif($_GET['aksi'] == 'deletekelas'){
     // Mengambil id provinsi dari parameter GET
     $id = $_GET['id'];
     // Memanggil method deleteProvinsi untuk menghapus data provinsi berdasarkan id
-    $delete = $master->deleteProvinsi($id);
+    $delete = $master->deleteKelas($id);
     if($delete){
-        header("Location: ../master-provinsi-list.php?status=deletesuccess");
+        header("Location: ../master-kelas-list.php?status=deletesuccess");
     } else {
-        header("Location: ../master-provinsi-list.php?status=deletefailed");
+        header("Location: ../master-kelas-list.php?status=deletefailed");
     }
 }
 

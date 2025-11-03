@@ -20,55 +20,66 @@ CREATE DATABASE IF NOT EXISTS `db_simplecrud` /*!40100 DEFAULT CHARACTER SET utf
 USE `db_simplecrud`;
 
 -- Dumping structure for table db_simplecrud.tb_mahasiswa
-CREATE TABLE IF NOT EXISTS `tb_mahasiswa` (
-  `id_mhs` int(11) NOT NULL AUTO_INCREMENT,
-  `nim_mhs` char(12) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `nama_mhs` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `prodi_mhs` char(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `alamat` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `provinsi` mediumint(3) NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `telp` char(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `status_mhs` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id_mhs`)
+CREATE TABLE IF NOT EXISTS `tb_peserta` (
+  `id_peserta` int(11) NOT NULL AUTO_INCREMENT,
+  `nip_peserta` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `nama_peserta` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `jurusan_peserta` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `kelas` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(3) NOT NULL,
+  `no_telepon` char(101) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lomba_diikuti` char(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `jenis_lomba` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_peserta`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+CREATE TABLE IF NOT EXISTS `tb_jurusan` (
+  `kode_jurusan` char(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_jurusan` char(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`kode_jurusan`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+INSERT INTO `tb_jurusan` (`kode_jurusan`, `nama_jurusan`) VALUES
+	('IPA', 'Ilmu Pengetahuan Alam'),
+	('IP', 'Ilmu Pengetahuan Sosial'),
+	('BHS', 'Bahasa');
+
+
 
 -- Dumping data for table db_simplecrud.tb_mahasiswa: ~0 rows (approximately)
 
--- Dumping structure for table db_simplecrud.tb_prodi
-CREATE TABLE IF NOT EXISTS `tb_prodi` (
-  `kode_prodi` char(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nama_prodi` char(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`kode_prodi`)
+-- Dumping structure for table db_simplecrud.tb_jurusan
+CREATE TABLE IF NOT EXISTS `tb_jenislomba` (
+  `kode_jenislomba` char(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_jurusan` char(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`kode_jenislomba`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table db_simplecrud.tb_prodi: ~9 rows (approximately)
-INSERT INTO `tb_prodi` (`kode_prodi`, `nama_prodi`) VALUES
-	('ARS', 'Arsitek'),
-	('BD', 'Bisnis Digital'),
-	('DI', 'Desain Interior'),
-	('DKV', 'Desain Komunikasi Visual'),
-	('DM', 'Desain Mode'),
-	('MBD', 'Magister Bisnis Digital'),
-	('MDS', 'Magister Desain'),
-	('MR', 'Manajemen Ritel'),
-	('STI', 'Sistem dan Teknologi Informasi');
+INSERT INTO `tb_jenislomba` (`id_jenislomba`, `nm_lomba`) VALUES
+	('1', 'Lomba Pidato'),
+	('2', 'Lomba Desain Poster'),
+	('3', 'Lomba Menulis Cerpen'),
+	('4', 'Lomba Fotografi'),
+	('5', 'Lomba Videografi'),
+	('6', 'Lomba Tari');
+	
 
--- Dumping structure for table db_simplecrud.tb_provinsi
-CREATE TABLE IF NOT EXISTS `tb_provinsi` (
-  `id_provinsi` smallint(3) NOT NULL AUTO_INCREMENT,
-  `nama_provinsi` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id_provinsi`)
+-- Dumping structure for table db_simplecrud.tb_kelas
+CREATE TABLE IF NOT EXISTS `tb_kelas` (
+  `id_kelas` smallint(3) NOT NULL AUTO_INCREMENT,
+  `nama_kelas` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id_kelas`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table db_simplecrud.tb_provinsi: ~6 rows (approximately)
-INSERT INTO `tb_provinsi` (`id_provinsi`, `nama_provinsi`) VALUES
-	(1, 'Bali'),
-	(2, 'Nusa Tenggara Timur'),
-	(3, 'Nusa Tenggara Barat'),
-	(4, 'Jawa Timur'),
-	(5, 'Jawa Tengah'),
-	(6, 'Jawa Barat');
+-- Dumping data for table db_simplecrud.tb_kelas: ~6 rows (approximately)
+INSERT INTO `tb_kelas` (`id_kelas`, `nama_kelas`) VALUES
+	(1, '10A'),
+	(2, '10B'),
+	(3, '11A'),
+	(4, '11B'),
+	(5, '12A'),
+	(6, '12B');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

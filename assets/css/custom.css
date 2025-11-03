@@ -1,1 +1,52 @@
 /* Taruh CSS Custom Disini */
+.bg-body-secondary {
+    background-color: rgb(43, 61, 31)!important;
+}
+
+/* ===== Tema Hijau Sekolah SIPKAS ===== */
+body {
+  background-color: #eaf5ea; /* hijau muda lembut */
+  color: #222; /* teks utama */
+  font-family: "Poppins", sans-serif;
+}
+
+.content-wrapper {
+  background-color: #ffffff; /* area isi putih */
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+/* sidebar */
+.main-sidebar {
+  background-color: #8bcaab !important; /* hijau tua */
+}
+
+.sidebar a {
+  color: #fff !important;
+  font-weight: 500;
+}
+
+.sidebar a:hover {
+  background-color: #38a169 !important; /* hijau muda */
+  color: #fff !important;
+}
+
+/* header */
+.main-header {
+  background-color: #38a169 !important;
+  color: #fff !important;
+}
+
+/* tombol */
+.btn-primary {
+  background-color: #38a169;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #2f855a;
+}
+
+
+
