@@ -3,11 +3,10 @@
 include_once 'config/class-peserta.php';
 $peserta = new Peserta();
 $kataKunci = '';
+
 // Mengecek apakah parameter GET 'search' ada
 if(isset($_GET['search'])){
-	// Mengambil kata kunci pencarian dari parameter GET 'search'
 	$kataKunci = $_GET['search'];
-	// Memanggil method searchPeserta untuk mencari data peserta berdasarkan kata kunci dan menyimpan hasil dalam variabel $cariMahasiswa
 	$cariPeserta = $peserta->searchPeserta($kataKunci);
 } 
 ?>
@@ -22,7 +21,6 @@ if(isset($_GET['search'])){
 		<div class="app-wrapper">
 
 			<?php include 'template/navbar.php'; ?>
-
 			<?php include 'template/sidebar.php'; ?>
 
 			<main class="app-main">
@@ -47,6 +45,7 @@ if(isset($_GET['search'])){
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-12">
+
 								<div class="card mb-3">
 									<div class="card-header">
 										<h3 class="card-title">Pencarian Peserta</h3>
@@ -70,6 +69,7 @@ if(isset($_GET['search'])){
 										</form>
 									</div>
 								</div>
+
 								<div class="card">
 									<div class="card-header">
 										<h3 class="card-title">Hasil Pencarian</h3>
@@ -85,20 +85,17 @@ if(isset($_GET['search'])){
 									</div>
 									<div class="card-body">
 										<?php
-										// Mengecek apakah parameter GET 'search' ada
 										if(isset($_GET['search'])){
-											// Mengecek apakah ada data mahasiswa yang ditemukan
 											if(count($cariPeserta) > 0){
-												// Menampilkan tabel hasil pencarian
 												echo '<table class="table table-striped" role="table">
 													<thead>
 														<tr>
 															<th>No</th>
 															<th>NIP</th>
 															<th>Nama Lengkap</th>
-															<th>Jenis Lomba</th>
-															<th>Kelas</th>
 															<th>Jurusan</th>
+															<th>Kelas</th>
+															<th>Jenis Lomba</th>
 															<th>Telp</th>
 															<th>Email</th>
 															<th class="text-center">Status</th>
@@ -106,52 +103,48 @@ if(isset($_GET['search'])){
 														</tr>
 													</thead>
 													<tbody>';
-													// Iterasi data mahasiswa yang ditemukan dan menampilkannya dalam tabel
-													foreach ($cariPeserta as $index => $peserta){
-														// Mengubah status mahasiswa menjadi badge dengan warna yang sesuai
-														if($peserta['status'] == 1){
-															$peserta['status'] = '<span class="badge bg-success">Aktif</span>';
-														} elseif($peserta['status'] == 2){
-															$peserta['status'] = '<span class="badge bg-danger">Tidak Aktif</span>';
-														} elseif($peserta['status'] == 3){
-															$peserta['status'] = '<span class="badge bg-warning text-dark">Cuti</span>';
-														} elseif($peserta['status'] == 4){
-															$peserta['status'] = '<span class="badge bg-primary">Lulus</span>';
-														} 
-														// Menampilkan baris data mahasiswa dalam tabel
+													foreach ($cariPeserta as $index => $row){
+														if($row['status'] == 1){
+															$row['status'] = '<span class="badge bg-success">Aktif</span>';
+														} elseif($row['status'] == 2){
+															$row['status'] = '<span class="badge bg-danger">Tidak Aktif</span>';
+														} elseif($row['status'] == 3){
+															$row['status'] = '<span class="badge bg-warning text-dark">Cuti</span>';
+														} elseif($row['status'] == 4){
+															$row['status'] = '<span class="badge bg-primary">Lulus</span>';
+														}
+
 														echo '<tr class="align-middle">
 															<td>'.($index + 1).'</td>
-															<td>'.$peserta['nip'].'</td>
-															<td>'.$peserta['nama'].'</td>
-															<td>'.$peserta['jurusan'].'</td>
-															<td>'.$peserta['kelas'].'</td>
-															<td>'.$peserta['lomba_diikuti'].'</td>
-															<td>'.$peserta['no_telepon'].'</td>
-															<td>'.$peserta['email'].'</td>
-															<td class="text-center">'.$peserta['status'].'</td>
+															<td>'.$row['nip'].'</td>
+															<td>'.$row['nama'].'</td>
+															<td>'.$row['jurusan'].'</td>
+															<td>'.$row['kelas'].'</td>
+															<td>'.$row['lomba'].'</td>
+															<td>'.$row['telp'].'</td>
+															<td>'.$row['email'].'</td>
+															<td class="text-center">'.$row['status'].'</td>
 															<td class="text-center">
-																<button type="button" class="btn btn-sm btn-warning me-1" onclick="window.location.href=\'data-edit.php?id='.$peserta['id'].'\'"><i class="bi bi-pencil-fill"></i> Edit</button>
-																<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data peserta ini?\')){window.location.href=\'proses/proses-delete.php?id='.$peserta['id'].'\'}"><i class="bi bi-trash-fill"></i> Hapus</button>
+																<button type="button" class="btn btn-sm btn-warning me-1" onclick="window.location.href=\'data-edit.php?id='.$row['id'].'\'"><i class="bi bi-pencil-fill"></i> Edit</button>
+																<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data peserta ini?\')){window.location.href=\'proses/proses-delete.php?id='.$row['id'].'\'}"><i class="bi bi-trash-fill"></i> Hapus</button>
 															</td>
 														</tr>';
 													}
-												echo '</tbody>
-												</table>';
+												echo '</tbody></table>';
 											} else {
-												// Menampilkan pesan jika tidak ada data mahasiswa yang ditemukan
 												echo '<div class="alert alert-warning" role="alert">
-														Tidak ditemukan data peserta yang sesuai dengan kata kunci "<strong>'.htmlspecialchars($_GET['search']).'</strong>".
-													  </div>';
+													Tidak ditemukan data peserta yang sesuai dengan kata kunci "<strong>'.htmlspecialchars($_GET['search']).'</strong>".
+												</div>';
 											}
 										} else {
-											// Menampilkan pesan jika form pencarian belum disubmit
 											echo '<div class="alert alert-info" role="alert">
-													Silakan masukkan kata kunci pencarian di atas untuk mencari data peserta.
-												  </div>';
+												Silakan masukkan kata kunci pencarian di atas untuk mencari data peserta.
+											</div>';
 										}
 										?>
 									</div>
 								</div>
+
 							</div>
 						</div>
 					</div>

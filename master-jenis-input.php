@@ -57,6 +57,7 @@ if(isset($_GET['status'])){
 											</button>
 										</div>
 									</div>
+
                                     <form action="proses/proses-prodi.php?aksi=inputprodi" method="POST">
 									    <div class="card-body">
                                             <div class="mb-3">
