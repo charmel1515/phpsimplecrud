@@ -102,11 +102,11 @@ if(isset($_GET['jurusan'])){
                                             </div>
                                             <div class="mb-3">
                                                 <label for="email" class="form-label">Email</label>
-                                                <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email Valid dan Benar" required>
+                                                <input type="text" class="form-control" id="email" name="email" placeholder="Masukkan Email Valid dan Benar" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="telp" class="form-label">Nomor Telepon</label>
-                                                <input type="tel" class="form-control" id="telp" name="telp" placeholder="Masukkan Nomor Telpon/HP" pattern="[0-9+\-\s()]{6,20}" required>
+                                                <input type="number" class="form-control" id="telp" name="telp" placeholder="Masukkan Nomor Telpon/HP" pattern="[0-9+\-\s()]{6,20}" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Jurusan</label>

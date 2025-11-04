@@ -5,7 +5,7 @@
 
 /* ===== Tema Hijau Sekolah SIPKAS ===== */
 body {
-  background-color: #eaf5ea; /* hijau muda lembut */
+  background-color: #9fadeb; /* hijau muda lembut */
   color: #222; /* teks utama */
   font-family: "Poppins", sans-serif;
 }
@@ -23,7 +23,7 @@ body {
 }
 
 .sidebar a {
-  color: #fff !important;
+  color: #f79494 !important;
   font-weight: 500;
 }
 
@@ -34,13 +34,13 @@ body {
 
 /* header */
 .main-header {
-  background-color: #38a169 !important;
+  background-color: #6373b8 !important;
   color: #fff !important;
 }
 
 /* tombol */
 .btn-primary {
-  background-color: #38a169;
+  background-color: #bd2759;
   border: none;
 }
 

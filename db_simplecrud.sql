@@ -29,7 +29,6 @@ CREATE TABLE IF NOT EXISTS `tb_peserta` (
   `email` varchar(3) NOT NULL,
   `no_telepon` char(101) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `lomba_diikuti` char(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `jenis_lomba` varchar(100) NOT NULL,
   PRIMARY KEY (`id_peserta`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

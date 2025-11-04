@@ -68,7 +68,7 @@ if(isset($_GET['status'])){
                                             </div>
 											<div class="mb-3">
 												<label for="nama" class="form-label">Nama Jenis Lomba</label>
-												<input type="text" class="form-control" id="nm_jenislomba" name="nm_jenislomba" placeholder="Masukan Nama Jenis Lomba" value="<?php echo $dataJenis['nama']; ?>" required>
+												<input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama Jenis Lomba" value="<?php echo $dataJenis['nama']; ?>" required>
 											</div>
                                         </div>
 									    <div class="card-footer">

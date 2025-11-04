@@ -6,7 +6,7 @@ include_once 'db-config.php';
 class MasterData extends Database {
 
     // Method untuk mendapatkan daftar program studi
-    public function getJenis(){
+    public function getjenis(){
         $query = "SELECT * FROM tb_jenislomba";
         $result = $this->conn->query($query);
         $jenis = [];
@@ -48,8 +48,8 @@ class MasterData extends Database {
 
     // Method untuk input data program studi
     public function inputJenis($data){
-        $kodeJenis = $data['id'];
-        $namaJenis = $data['nama'];
+        $kodeJenis = $data['id_jenislomba'];
+        $namaJenis = $data['nm_lomba'];
         $query = "INSERT INTO tb_jenislomba (id_jenislomba, nm_lomba) VALUES (?, ?)";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){

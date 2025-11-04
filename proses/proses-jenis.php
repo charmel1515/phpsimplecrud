@@ -8,8 +8,8 @@ $master = new MasterData();
 if($_GET['aksi'] == 'inputjenis'){
     // Mengambil data jenis dari form input menggunakan metode POST dan menyimpannya dalam array
     $dataJenis = [
-        'id' => $_POST['id'],
-        'nama' => $_POST['nama']
+        'id' => $_POST['id_jenislomba'],
+        'nama' => $_POST['nm_lomba']
     ];
     // Memanggil method inputJenis untuk memasukkan data jenis dengan parameter array $dataProdi
     $input = $master->inputJenis($dataJenis);

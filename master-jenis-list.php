@@ -14,7 +14,7 @@ if(isset($_GET['status'])){
 		echo "<script>alert('Gagal menghapus data jenis lomba. Silakan coba lagi.');</script>";
 	}
 }
-$dataProdi = $master->getJenis();
+$dataJenis = $master->getJenis();
 
 ?>
 <!doctype html>
@@ -99,7 +99,7 @@ $dataProdi = $master->getJenis();
 										</table>
 									</div>
 									<div class="card-footer">
-										<button type="button" class="btn btn-primary" onclick="window.location.href='master-jenis-input.php'"><i class="bi bi-plus-lg"></i> Tambah Prodi</button>
+										<button type="button" class="btn btn-primary" onclick="window.location.href='master-jenis-input.php'"><i class="bi bi-plus-lg"></i> Tambah Jenis</button>
 									</div>
 								</div>
 							</div>

@@ -51,7 +51,7 @@ class Peserta extends Database {
                     'kelas' => $row['kelas'],
                     'email' => $row['email'],
                     'telp' => $row['telp'],
-                    'lomba' => $row['lomba'],
+                    'lomba' => $row['lomba_diikuti'],
                     
                 ];
             }
