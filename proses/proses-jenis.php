@@ -8,15 +8,10 @@ $master = new MasterData();
 if($_GET['aksi'] == 'inputjenis'){
     // Mengambil data jenis dari form input menggunakan metode POST dan menyimpannya dalam array
     $dataJenis = [
-<<<<<<< HEAD
-        'id' => $_POST['id_jenislomba'],
-        'nama' => $_POST['nm_lomba']
-=======
-        // ID tidak perlu diinput manual karena AUTO_INCREMENT di database
-        'nm_lomba' => $_POST['nama'] // nama kolom di tabel tb_jenislomba
->>>>>>> be4672b2b590d4dda481042957900c5ea1f38386
+        'id' => $_POST['id'],
+        'nama' => $_POST['nama']
     ];
-    // Memanggil method inputJenis untuk memasukkan data jenis dengan parameter array $dataJenis
+    // Memanggil method inputJenis untuk memasukkan data jenis dengan parameter array $dataProdi
     $input = $master->inputJenis($dataJenis);
     if($input){
         // Jika berhasil, redirect ke halaman master-jenis-list.php dengan status inputsuccess
@@ -25,27 +20,25 @@ if($_GET['aksi'] == 'inputjenis'){
         // Jika gagal, redirect ke halaman master-jenis-input.php dengan status failed
         header("Location: ../master-jenis-input.php?status=failed");
     }
-
 } elseif($_GET['aksi'] == 'updatejenis'){
     // Mengambil data jenis dari form edit menggunakan metode POST dan menyimpannya dalam array
     $dataJenis = [
-        'id_jenislomba' => $_POST['id'], // sesuaikan nama kolom id di tabel
-        'nm_lomba' => $_POST['nama']
+        'id' => $_POST['id'],
+        'nama' => $_POST['nama']
     ];
-    // Memanggil method updateJenis untuk mengupdate data jenis dengan parameter array $dataJenis
-    $update = $master->updateJenis($dataJenis);
+    // Memanggil method updateJenis untuk mengupdate data jenis dengan parameter array $dataProdi
+    $update = $master->updateJenis($data);
     if($update){
         // Jika berhasil, redirect ke halaman master-jenis-list.php dengan status editsuccess
         header("Location: ../master-jenis-list.php?status=editsuccess");
     } else {
         // Jika gagal, redirect ke halaman master-jenis-edit.php dengan status failed dan membawa id jenis
-        header("Location: ../master-jenis-edit.php?id=".$dataJenis['id_jenislomba']."&status=failed");
+        header("Location: ../master-jenis-edit.php?id=".$data['id']."&status=failed");
     }
-
 } elseif($_GET['aksi'] == 'deletejenis'){
     // Mengambil id jenis dari parameter GET
     $id = $_GET['id'];
-    // Memanggil method deleteJenis untuk menghapus data jenis berdasarkan id
+    // Memanggil method deleteProdi untuk menghapus data jenis berdasarkan id
     $delete = $master->deleteJenis($id);
     if($delete){
         // Jika berhasil, redirect ke halaman master-jenis-list.php dengan status deletesuccess

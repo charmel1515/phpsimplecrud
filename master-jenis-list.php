@@ -14,13 +14,7 @@ if(isset($_GET['status'])){
 		echo "<script>alert('Gagal menghapus data jenis lomba. Silakan coba lagi.');</script>";
 	}
 }
-<<<<<<< HEAD
 $dataJenis = $master->getJenis();
-=======
-
-// ✅ Gunakan variabel yang benar untuk mengambil data dari database
-$dataJenis = $master->getJenis(); 
->>>>>>> be4672b2b590d4dda481042957900c5ea1f38386
 
 ?>
 <!doctype html>
@@ -77,30 +71,26 @@ $dataJenis = $master->getJenis();
 											<thead>
 												<tr>
 													<th>No</th>
-													<th>Nama Jenis Lomba</th>
+													<th>Nip</th>
+													<th>Nama</th>
 													<th class="text-center">Aksi</th>
 												</tr>
 											</thead>
 											<tbody>
 												<?php
-													// ✅ Pastikan data ada dan bisa dihitung
-													if (empty($dataJenis) || count($dataJenis) == 0) {
+													if(count($dataJenis) == 0){
 													    echo '<tr class="align-middle">
-															<td colspan="3" class="text-center">Tidak ada data jenis lomba.</td>
+															<td colspan="4" class="text-center">Tidak ada data jenis lomba.</td>
 														</tr>';
 													} else {
 														foreach ($dataJenis as $index => $jenis){
-															// ✅ Sesuaikan dengan kolom database: gunakan nama kolom yang benar,
-															// tapi tambahkan fallback untuk kompatibilitas
-															$kode = isset($jenis['kode_jenislomba']) ? $jenis['kode_jenislomba'] : (isset($jenis['kode']) ? $jenis['kode'] : '');
-															$nama = isset($jenis['nama_jenislomba']) ? $jenis['nama_jenislomba'] : (isset($jenis['nama']) ? $jenis['nama'] : '');
-															
 															echo '<tr class="align-middle">
 																<td>'.($index + 1).'</td>
-																<td>'.htmlspecialchars($nama).'</td>
+																<td>'.$jenis['id'].'</td>
+																<td>'.$jenis['nama'].'</td>
 																<td class="text-center">
-																	<button type="button" class="btn btn-sm btn-warning me-1" onclick="window.location.href=\'master-jenis-edit.php?id='.urlencode($kode).'\';"><i class="bi bi-pencil-fill"></i> Edit</button>
-																	<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data jenis lomba ini?\')){window.location.href=\'proses/proses-jenis.php?aksi=deletejenis&id='.urlencode($kode).'\';}"><i class="bi bi-trash-fill"></i> Hapus</button>
+																	<button type="button" class="btn btn-sm btn-warning me-1" onclick="window.location.href=\'master-jenis-edit.php?id='.$jenis['id'].'\'"><i class="bi bi-pencil-fill"></i> Edit</button>
+																	<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data jenis lomba ini?\')){window.location.href=\'proses/proses-jenis.php?aksi=deletejenis&id='.$jenis['id'].'\'}"><i class="bi bi-trash-fill"></i> Hapus</button>
 																</td>
 															</tr>';
 														}
@@ -110,11 +100,7 @@ $dataJenis = $master->getJenis();
 										</table>
 									</div>
 									<div class="card-footer">
-<<<<<<< HEAD
 										<button type="button" class="btn btn-primary" onclick="window.location.href='master-jenis-input.php'"><i class="bi bi-plus-lg"></i> Tambah Jenis</button>
-=======
-										<button type="button" class="btn btn-primary" onclick="window.location.href='master-jenis-input.php'"><i class="bi bi-plus-lg"></i> Tambah Jenis Lomba</button>
->>>>>>> be4672b2b590d4dda481042957900c5ea1f38386
 									</div>
 								</div>
 							</div>

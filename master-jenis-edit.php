@@ -6,7 +6,7 @@ $master = new MasterData();
 $dataJenis = $master->getUpdateJenis($_GET['id']);
 if(isset($_GET['status'])){
     if($_GET['status'] == 'failed'){
-        echo "<script>alert('Gagal mengubah data program studi. Silakan coba lagi.');</script>";
+        echo "<script>alert('Gagal mengubah data peserta. Silakan coba lagi.');</script>";
     }
 }
 
@@ -60,13 +60,8 @@ if(isset($_GET['status'])){
 											</button>
 										</div>
 									</div>
-
-                                    <form action="proses/proses-jenis.php?aksi=updateprodi" method="POST">
+                                    <form action="proses/proses-jenis.php?aksi=updatejenis" method="POST">
 									    <div class="card-body">
-                                            <div class="mb-3">
-                                                <label for="nama" class="form-label">id</label>
-                                                <input type="text" class="form-control-plaintext" id="id_jenislomba" name="id_jenislomba" placeholder="Masukkan id jenis lomba" value="<?php echo $dataJenis['id']; ?>" required readonly>
-                                            </div>
 											<div class="mb-3">
 												<label for="nama" class="form-label">Nama Jenis Lomba</label>
 												<input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama Jenis Lomba" value="<?php echo $dataJenis['nama']; ?>" required>

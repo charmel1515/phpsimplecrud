@@ -2,7 +2,6 @@
 
 include_once 'config/class-peserta.php';
 $peserta = new Peserta();
-
 // Menampilkan alert berdasarkan status yang diterima melalui parameter GET
 if(isset($_GET['status'])){
 	// Mengecek nilai parameter GET 'status' dan menampilkan alert yang sesuai menggunakan JavaScript
@@ -16,8 +15,6 @@ if(isset($_GET['status'])){
 		echo "<script>alert('Gagal menghapus data peserta. Silakan coba lagi.');</script>";
 	}
 }
-
-// Ambil semua data peserta
 $dataPeserta = $peserta->getAllPeserta();
 
 ?>
@@ -32,6 +29,7 @@ $dataPeserta = $peserta->getAllPeserta();
 		<div class="app-wrapper">
 
 			<?php include 'template/navbar.php'; ?>
+
 			<?php include 'template/sidebar.php'; ?>
 
 			<main class="app-main">
@@ -69,7 +67,6 @@ $dataPeserta = $peserta->getAllPeserta();
 											</button>
 										</div>
 									</div>
-
 									<div class="card-body p-0 table-responsive">
 										<table class="table table-striped" role="table">
 											<thead>
@@ -79,9 +76,9 @@ $dataPeserta = $peserta->getAllPeserta();
 													<th>Nama Peserta</th>
 													<th>Jurusan</th>
 													<th>Kelas</th>
-													<th>Lomba Diikuti</th>
 													<th>Telp</th>
 													<th>Email</th>
+													<th>lomba</th>
 													<th class="text-center">Status</th>
 													<th class="text-center">Aksi</th>
 												</tr>
@@ -93,34 +90,29 @@ $dataPeserta = $peserta->getAllPeserta();
 															<td colspan="10" class="text-center">Tidak ada data peserta.</td>
 														</tr>';
 													} else {
-														foreach ($dataPeserta as $index => $pes){
-															// Menampilkan status dalam bentuk badge
-															$statusBadge = '';
-															if($pes['status'] == 1){
-															    $statusBadge = '<span class="badge bg-success">Aktif</span>';
-															} elseif($pes['status'] == 2){
-															    $statusBadge = '<span class="badge bg-danger">Tidak Aktif</span>';
-															} elseif($pes['status'] == 3){
-															    $statusBadge = '<span class="badge bg-warning text-dark">Cuti</span>';
-															} elseif($pes['status'] == 4){
-															    $statusBadge = '<span class="badge bg-primary">Lulus</span>';
-															} else {
-                                                                $statusBadge = '<span class="badge bg-secondary">Unknown</span>';
-                                                            }
-
+														foreach ($dataPeserta as $index => $peserta){
+															if($peserta['status'] == 1){
+															    $peserta['status'] = '<span class="badge bg-success">Aktif</span>';
+															} elseif($peserta['status'] == 2){
+															    $peserta['status'] = '<span class="badge bg-danger">Tidak Aktif</span>';
+															} elseif($peserta['status'] == 3){
+															    $peserta['status'] = '<span class="badge bg-warning text-dark">Cuti</span>';
+															} elseif($peserta['status'] == 4){
+															    $peserta['status'] = '<span class="badge bg-primary">Lulus</span>';
+															} 
 															echo '<tr class="align-middle">
 																<td>'.($index + 1).'</td>
-																<td>'.$pes['nip'].'</td>
-																<td>'.$pes['nama'].'</td>
-																<td>'.$pes['jurusan'].'</td>
-																<td>'.$pes['kelas'].'</td>
-																<td>'.$pes['lomba'].'</td>
-																<td>'.$pes['telp'].'</td>
-																<td>'.$pes['email'].'</td>
-																<td class="text-center">'.$statusBadge.'</td>
+																<td>'.$peserta['nip'].'</td>
+																<td>'.$peserta['nama'].'</td>
+																<td>'.$peserta['jurusan'].'</td>
+																<td>'.$peserta['kelas'].'</td>
+																<td>'.$peserta['lomba'].'</td>
+																<td>'.$peserta['telp'].'</td>
+																<td>'.$peserta['email'].'</td>
+																<td class="text-center">'.$peserta['status'].'</td>
 																<td class="text-center">
-																	<button type="button" class="btn btn-sm btn-warning me-1" onclick="window.location.href=\'data-edit.php?id='.$pes['id_peserta'].'\'"><i class="bi bi-pencil-fill"></i> Edit</button>
-																	<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data peserta ini?\')){window.location.href=\'proses/proses-delete.php?id='.$pes['id_peserta'].'\'}"><i class="bi bi-trash-fill"></i> Hapus</button>
+																	<button type="button" class="btn btn-sm btn-warning me-1" onclick="window.location.href=\'data-edit.php?id='.$peserta['id'].'\'"><i class="bi bi-pencil-fill"></i> Edit</button>
+																	<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data peserta ini?\')){window.location.href=\'proses/proses-delete.php?id='.$peserta['id'].'\'}"><i class="bi bi-trash-fill"></i> Hapus</button>
 																</td>
 															</tr>';
 														}
@@ -129,7 +121,6 @@ $dataPeserta = $peserta->getAllPeserta();
 											</tbody>
 										</table>
 									</div>
-
 									<div class="card-footer">
 										<button type="button" class="btn btn-primary" onclick="window.location.href='data-input.php'"><i class="bi bi-plus-lg"></i> Tambah Peserta</button>
 									</div>
